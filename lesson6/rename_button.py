@@ -5,16 +5,13 @@ from selenium.webdriver.common.by import By
 
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-driver.implicitly_wait(20)
+driver.get("http://uitestingplayground.com/textinput")
 
-driver.get("http://www.uitestingplayground.com/ajax")
+element = driver.find_element(By.CSS_SELECTOR, "#newButtonName")
+element.send_keys("SkyPro")
 
-driver.find_element(By.CSS_SELECTOR, "#ajaxButton").click()
+driver.find_element(By.CSS_SELECTOR, "button[id=updatingButton]").click()
 
-
-content = driver.find_element(By.CSS_SELECTOR, "#content")
-txt = content.find_element(By.CSS_SELECTOR, "p.bg-success").text
-print(txt)
-
+print( driver.find_element(By.CSS_SELECTOR, "#updatingButton").text )
 
 driver.quit()
